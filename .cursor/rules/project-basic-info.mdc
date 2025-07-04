@@ -1,0 +1,24 @@
+---
+description: 这里记载着该项目的基本信息情况
+globs: 
+alwaysApply: true
+---
+# Rule: project-basic-info
+
+project-basic-info 文件说明：这里记载着该项目的基本信息情况。在每次新任务开始前，使用 tree 命令获取前后端的最新项目结构，并更新到 project-basic-info。
+
+<project-basic-info>
+
+## 项目路径
+- tool_base_path: ~/git/strands
+- git_repo_path: ~/git/strands
+- 前端: (待规划)
+- 后端: (待规划)
+
+## 项目现状
+- 项目名称: Strands (AI翻译工具)
+- 当前阶段: 产品概念定义阶段
+- 已有文档: 双语文本对照处理系统开发指南.md
+- 参考项目: 《真正的朋友》双语对照项目经验
+
+</project-basic-info>
