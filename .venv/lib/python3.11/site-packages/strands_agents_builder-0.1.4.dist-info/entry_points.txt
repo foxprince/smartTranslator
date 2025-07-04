@@ -1,2 +1,0 @@
-[console_scripts]
-strands = strands_agents_builder.strands:main
