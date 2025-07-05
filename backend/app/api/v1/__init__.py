@@ -2,7 +2,7 @@
 API v1 路由配置
 """
 from fastapi import APIRouter
-from .endpoints import documents, collaboration
+from .endpoints import documents, collaboration, translation
 
 api_router = APIRouter()
 
@@ -18,4 +18,11 @@ api_router.include_router(
     collaboration.router,
     prefix="/collaboration",
     tags=["collaboration"]
+)
+
+# 注册翻译路由
+api_router.include_router(
+    translation.router,
+    prefix="/translation",
+    tags=["translation"]
 )

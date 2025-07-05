@@ -1,0 +1,288 @@
+/* 布局容器 */
+.layout-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 侧边栏 */
+.layout-sider {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.layout-sider .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Logo区域 */
+.layout-logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 16px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.logo-icon {
+  font-size: 24px;
+  color: #1890ff;
+}
+
+.logo-text {
+  margin-left: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 菜单 */
+.layout-sider .ant-menu {
+  flex: 1;
+  border: none;
+  background: transparent;
+}
+
+.layout-sider .ant-menu-item {
+  margin: 4px 8px;
+  border-radius: 6px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.layout-sider .ant-menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.layout-sider .ant-menu-item-selected {
+  background: #1890ff !important;
+}
+
+/* 系统状态指示器 */
+.system-status {
+  padding: 16px;
+  margin-top: auto;
+}
+
+.status-item {
+  text-align: center;
+}
+
+.status-indicators {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8px;
+}
+
+.status-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff4d4f;
+  transition: all 0.3s;
+}
+
+.status-dot.online {
+  background: #52c41a;
+  box-shadow: 0 0 6px rgba(82, 196, 26, 0.6);
+}
+
+.status-dot.offline {
+  background: #ff4d4f;
+  box-shadow: 0 0 6px rgba(255, 77, 79, 0.6);
+}
+
+/* 主内容区 */
+.layout-main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* 顶部导航 */
+.layout-header {
+  background: #fff;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 99;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.collapse-btn {
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 头部统计 */
+.header-stats {
+  padding: 0 24px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 60px;
+}
+
+/* 通知按钮 */
+.notification-btn {
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 用户信息 */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.user-info:hover {
+  background: #f5f5f5;
+}
+
+.username {
+  font-size: 14px;
+  color: #595959;
+}
+
+/* 内容区域 */
+.layout-content {
+  flex: 1;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.content-wrapper {
+  height: 100%;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .header-stats {
+    display: none;
+  }
+  
+  .layout-header {
+    padding: 0 16px;
+  }
+  
+  .content-wrapper {
+    padding: 16px;
+  }
+  
+  .page-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-info .username {
+    display: none;
+  }
+  
+  .layout-header {
+    padding: 0 12px;
+  }
+  
+  .content-wrapper {
+    padding: 12px;
+  }
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .layout-header {
+    background: #141414;
+    border-bottom: 1px solid #303030;
+  }
+  
+  .page-title {
+    color: #fff;
+  }
+  
+  .user-info:hover {
+    background: #262626;
+  }
+  
+  .username {
+    color: #d9d9d9;
+  }
+  
+  .layout-content {
+    background: #000;
+  }
+}
+
+/* 动画效果 */
+.layout-sider {
+  transition: all 0.2s;
+}
+
+.layout-main {
+  transition: all 0.2s;
+}
+
+/* 滚动条样式 */
+.content-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.content-wrapper::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.content-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

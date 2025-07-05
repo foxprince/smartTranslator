@@ -10,66 +10,247 @@
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f9f9f9;
+            background: linear-gradient(135deg, #f5f3f0 0%, #ede8e3 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        /* 维多利亚风格背景花纹 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.03) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 40%, rgba(205, 133, 63, 0.02) 50%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, rgba(222, 184, 135, 0.02) 50%, transparent 60%);
+            background-size: 120px 120px, 80px 80px, 60px 60px, 40px 40px;
+            background-position: 0 0, 40px 40px, 0 0, 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* 页面边框装饰 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(139, 69, 19, 0.1);
+            border-image: linear-gradient(45deg, 
+                rgba(160, 82, 45, 0.2), 
+                rgba(205, 133, 63, 0.1), 
+                rgba(222, 184, 135, 0.2), 
+                rgba(160, 82, 45, 0.2)
+            ) 1;
+            pointer-events: none;
+            z-index: -1;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 30px rgba(139, 69, 19, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(205, 133, 63, 0.2);
+            position: relative;
+        }
+        
+        /* 容器装饰花纹 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid rgba(160, 82, 45, 0.1);
+            border-radius: 10px;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(222, 184, 135, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(205, 133, 63, 0.05) 0%, transparent 30%);
+            pointer-events: none;
         }
         .title {
             text-align: center;
             margin-bottom: 40px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 20px;
+            border-bottom: 3px double rgba(139, 69, 19, 0.3);
+            padding-bottom: 25px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(245, 245, 220, 0.3) 0%, rgba(255, 248, 220, 0.2) 100%);
+            border-radius: 10px;
+            margin: 0 -20px 40px -20px;
+            padding: 25px 20px;
+        }
+        
+        /* 标题装饰花纹 */
+        .title::before {
+            content: '❦';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: rgba(160, 82, 45, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0 15px;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background: 
+                radial-gradient(ellipse, rgba(205, 133, 63, 0.2) 0%, transparent 70%);
         }
         .title h1 {
-            color: #333;
-            margin: 10px 0;
+            color: #5d4037;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
+            font-weight: normal;
+            letter-spacing: 1px;
         }
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(139, 69, 19, 0.05);
         }
         .comparison-table td {
             vertical-align: top;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
+            padding: 20px;
+            border-bottom: 1px solid rgba(205, 133, 63, 0.1);
+            position: relative;
+        }
+        
+        /* 表格行装饰 */
+        .comparison-table tr:nth-child(even) {
+            background: rgba(245, 245, 220, 0.1);
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(222, 184, 135, 0.05);
+            transition: background 0.3s ease;
         }
         .english-column {
             width: 50%;
-            border-right: 2px solid #ddd;
+            border-right: 2px solid rgba(160, 82, 45, 0.2);
             font-family: 'Times New Roman', serif;
             font-size: 14px;
-            color: #333;
-            line-height: 1.5;
+            color: #4a4a4a;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 英文列装饰 */
+        .english-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -1px;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(205, 133, 63, 0.3) 50%, 
+                transparent 100%);
         }
         .chinese-column {
             width: 50%;
             font-family: '宋体', serif;
             font-size: 15px;
-            color: #222;
-            line-height: 1.6;
+            color: #3e2723;
+            line-height: 1.7;
+            position: relative;
+        }
+        
+        /* 中文列装饰 */
+        .chinese-column::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -10px;
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(to bottom, 
+                rgba(222, 184, 135, 0.4), 
+                rgba(205, 133, 63, 0.2));
+            border-radius: 2px;
         }
         .chapter-header {
-            background-color: #f0f0f0;
-            padding: 15px;
-            margin: 30px 0 20px 0;
-            border-left: 5px solid #333;
+            background: linear-gradient(135deg, 
+                rgba(245, 245, 220, 0.6) 0%, 
+                rgba(255, 248, 220, 0.4) 50%, 
+                rgba(245, 245, 220, 0.6) 100%);
+            padding: 20px;
+            margin: 40px 0 25px 0;
+            border-left: 6px solid rgba(139, 69, 19, 0.4);
+            border-right: 6px solid rgba(139, 69, 19, 0.4);
             text-align: center;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 
+                0 2px 10px rgba(139, 69, 19, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+        
+        /* 章节标题装饰花纹 */
+        .chapter-header::before {
+            content: '◆ ◇ ◆';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0 15px;
+            color: rgba(160, 82, 45, 0.6);
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+        
+        .chapter-header::after {
+            content: '◆ ◇ ◆';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0 15px;
+            color: rgba(160, 82, 45, 0.6);
+            font-size: 12px;
+            letter-spacing: 5px;
         }
         .chapter-header h2 {
             margin: 0;
-            color: #333;
+            color: #5d4037;
+            text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
+            font-weight: normal;
+            letter-spacing: 2px;
         }
         .paragraph-marker {
-            color: #888;
-            font-size: 12px;
-            margin-bottom: 5px;
+            color: rgba(139, 69, 19, 0.6);
+            font-size: 11px;
+            margin-bottom: 8px;
             font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 0.5px;
         }
         p {
             margin: 0 0 15px 0;
@@ -79,47 +260,267 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: white;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border: 2px solid rgba(160, 82, 45, 0.2);
+            border-radius: 12px;
+            box-shadow: 
+                0 4px 20px rgba(139, 69, 19, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             max-height: 400px;
             overflow-y: auto;
-            z-index: 1000;
-            width: 200px;
+            z-index: 9999;
+            width: 220px;
+        }
+        
+        /* 导航装饰花纹 */
+        .navigation::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid rgba(205, 133, 63, 0.1);
+            border-radius: 8px;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(245, 245, 220, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(222, 184, 135, 0.2) 0%, transparent 50%);
+            pointer-events: none;
         }
         .navigation a {
             display: block;
-            margin: 5px 0;
-            color: #333;
+            margin: 8px 0;
+            color: #5d4037;
             text-decoration: none;
             font-size: 12px;
-            padding: 2px 5px;
-            border-radius: 3px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
         .navigation a:hover {
-            color: #666;
-            background-color: #f0f0f0;
+            color: #3e2723;
+            background: linear-gradient(135deg, 
+                rgba(245, 245, 220, 0.6) 0%, 
+                rgba(222, 184, 135, 0.3) 100%);
+            transform: translateX(3px);
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
         }
         .nav-section {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(205, 133, 63, 0.2);
+            padding-bottom: 12px;
+            position: relative;
+        }
+        
+        /* 导航分节装饰 */
+        .nav-section::after {
+            content: '❦';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: rgba(160, 82, 45, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0 8px;
         }
         .nav-title {
             font-weight: bold;
-            color: #555;
-            margin-bottom: 5px;
+            color: #5d4037;
+            margin-bottom: 8px;
+            font-size: 13px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
         }
         .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
-            height: 3px;
-            background-color: #333;
-            z-index: 1001;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgba(139, 69, 19, 0.8) 0%, 
+                rgba(205, 133, 63, 0.8) 50%, 
+                rgba(222, 184, 135, 0.8) 100%);
+            z-index: 9998;
+            box-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
+        }
+        .nav-toggle-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(245, 245, 220, 0.8) 0%, 
+                rgba(222, 184, 135, 0.6) 100%);
+            border: 1px solid rgba(160, 82, 45, 0.3);
+            color: #5d4037;
+            font-size: 12px;
+            padding: 8px 0;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+        .nav-toggle-btn:hover {
+            background: linear-gradient(135deg, 
+                rgba(222, 184, 135, 0.8) 0%, 
+                rgba(205, 133, 63, 0.6) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(139, 69, 19, 0.2);
+        }
+        #navContent {
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        #navContent.collapsed {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 添加一些维多利亚风格的装饰元素 */
+        .ornament {
+            text-align: center;
+            margin: 30px 0;
+            color: rgba(160, 82, 45, 0.4);
+            font-size: 18px;
+            letter-spacing: 10px;
+        }
+        
+        /* 首字母装饰 */
+        .first-letter {
+            float: left;
+            font-size: 4em;
+            line-height: 0.8;
+            margin: 0.1em 0.1em 0.1em 0;
+            color: rgba(139, 69, 19, 0.7);
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 0 5px;
+            }
+            
+            .navigation {
+                position: fixed !important;
+                top: 10px !important;
+                right: 10px !important;
+                width: 180px !important;
+                max-height: 300px;
+                font-size: 11px;
+            }
+            
+            .navigation a {
+                font-size: 11px;
+                padding: 4px 8px;
+                margin: 4px 0;
+            }
+            
+            .nav-title {
+                font-size: 12px;
+            }
+            
+            .nav-toggle-btn {
+                font-size: 11px;
+                padding: 6px 0;
+            }
+            
+            .comparison-table {
+                display: block;
+            }
+            
+            .comparison-table tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid rgba(205, 133, 63, 0.2);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .comparison-table td {
+                display: block;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(205, 133, 63, 0.1);
+            }
+            
+            .english-column::before,
+            .chinese-column::before {
+                display: none;
+            }
+            
+            .first-letter {
+                font-size: 3em;
+            }
+            
+            .ornament {
+                font-size: 14px;
+                letter-spacing: 5px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .navigation {
+                position: fixed !important;
+                top: 5px !important;
+                right: 5px !important;
+                width: 160px !important;
+                max-height: 250px;
+            }
+            
+            .navigation a {
+                font-size: 10px;
+                padding: 3px 6px;
+            }
+            
+            .nav-title {
+                font-size: 11px;
+            }
+            
+            .nav-toggle-btn {
+                font-size: 10px;
+                padding: 5px 0;
+            }
+            
+            .title {
+                margin: 0 -10px 30px -10px;
+                padding: 20px 10px;
+            }
+            
+            .title h1 {
+                font-size: 1.5em;
+            }
+            
+            .chapter-header {
+                padding: 15px;
+                margin: 30px 0 20px 0;
+            }
+            
+            .first-letter {
+                font-size: 2.5em;
+            }
         }
         .note {
             background-color: #fff3cd;
@@ -229,23 +630,26 @@
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
-    
-    <div class="navigation">
-        <div class="nav-section">
-            <div class="nav-title">导航 / Navigation</div>
-            <a href="#stats">版本信息 / Version Info</a>
-            <a href="#characters">人物表 / Characters</a>
-            <a href="#title">标题页 / Title</a>
-        </div>
-        
-        <div class="nav-section">
-            <div class="nav-title">章节 / Chapters</div>
-            <a href="#chapter1">第一章 / CHAPTER I.<br><small>一段不合适的友谊 / AN UNSUITABLE FRIENDSHIP.</small></a>
-            <a href="#chapter2">第二章 / CHAPTER II.<br><small>卡罗琳夫人的策略 / LADY CAROLINE'S TACTICS.</small></a>
-            <a href="#chapter3">第三章 / CHAPTER III.<br><small>在赫尔姆斯利庄园 / AT HELMSLEY COURT.</small></a>
-            <a href="#chapter4">第四章 / CHAPTER IV.<br><small>在路上 / ON THE ROAD.</small></a>
-            <a href="#chapter5">第五章 / CHAPTER V.<br><small>威维斯·布兰德 / WYVIS BRAND.</small></a>
-            <a href="#chapter6">第六章 / CHAPTER VI.<br><small>珍妮塔在家 / JANETTA AT HOME.</small></a>
+    <div class="navigation" id="navMenu">
+        <button class="nav-toggle-btn" id="navToggleBtn">收起导航 ▲</button>
+        <div id="navContent">
+            <div class="nav-section">
+                <div class="nav-title">导航 / Navigation</div>
+                <a href="#title">标题 / Title</a>
+                <a href="#stats">版本信息 / Version Info</a>
+                <a href="#characters">人物表 / Characters</a>
+                <a href="#relationships">人物关系 / Characters</a>
+            </div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-title">章节 / Chapters</div>
+                <a href="#chapter1">第一章 / CHAPTER I.<br><small>一段不合适的友谊 / AN UNSUITABLE FRIENDSHIP.</small></a>
+                <a href="#chapter2">第二章 / CHAPTER II.<br><small>卡罗琳夫人的策略 / LADY CAROLINE'S TACTICS.</small></a>
+                <a href="#chapter3">第三章 / CHAPTER III.<br><small>在赫尔姆斯利庄园 / AT HELMSLEY COURT.</small></a>
+                <a href="#chapter4">第四章 / CHAPTER IV.<br><small>在路上 / ON THE ROAD.</small></a>
+                <a href="#chapter5">第五章 / CHAPTER V.<br><small>威维斯·布兰德 / WYVIS BRAND.</small></a>
+                <a href="#chapter6">第六章 / CHAPTER VI.<br><small>珍妮塔在家 / JANETTA AT HOME.</small></a>
+            </div>
         </div>
     </div>
 
@@ -258,6 +662,7 @@
         </div>
 
         <!-- 版本信息 -->
+        <div class="ornament">❦ ◆ ❦ ◆ ❦</div>
         <div id="stats" class="stats">
             <h3>📊 清洁版本信息 / Clean Version Statistics</h3>
             <div class="stats-grid">
@@ -277,6 +682,7 @@
         </div>
 
         <!-- 人物对照表 -->
+        <div class="ornament">◇ ❦ ◇ ❦ ◇</div>
         <div id="characters" class="chapter-header">
             <h2>主要人物对照表 / CHARACTER LIST</h2>
         </div>
@@ -516,6 +922,8 @@
             <h2>第一章 / CHAPTER I.</h2>
             <p>一段不合适的友谊 / AN UNSUITABLE FRIENDSHIP.</p>
         </div>
+        
+        <div class="ornament">❦ ◆ ◇ ◆ ❦</div>
 
         <table class="comparison-table">
             <tr>
@@ -1143,6 +1551,8 @@
             <h2>第二章 / CHAPTER II.</h2>
             <p>卡罗琳夫人的策略 / LADY CAROLINE'S TACTICS.</p>
         </div>
+        
+        <div class="ornament">◇ ❦ ◇ ❦ ◇</div>
 
         <table class="comparison-table">
             <tr>
@@ -1620,6 +2030,8 @@
             <h2>第三章 / CHAPTER III.</h2>
             <p>在赫尔姆斯利庄园 / AT HELMSLEY COURT.</p>
         </div>
+        
+        <div class="ornament">❦ ◆ ❦ ◆ ❦</div>
 
         <table class="comparison-table">
             <tr>
@@ -4111,6 +4523,34 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // 导航收起/展开功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggleBtn = document.getElementById('navToggleBtn');
+            const navContent = document.getElementById('navContent');
+            let isCollapsed = false;
+
+            navToggleBtn.addEventListener('click', function() {
+                if (isCollapsed) {
+                    // 展开导航
+                    navContent.classList.remove('collapsed');
+                    navContent.style.display = 'block';
+                    navToggleBtn.textContent = '收起导航 ▲';
+                    isCollapsed = false;
+                } else {
+                    // 收起导航
+                    navContent.classList.add('collapsed');
+                    // 延迟隐藏，让动画完成
+                    setTimeout(() => {
+                        if (isCollapsed) {
+                            navContent.style.display = 'none';
+                        }
+                    }, 300);
+                    navToggleBtn.textContent = '展开导航 ▼';
+                    isCollapsed = true;
+                }
+            });
         });
 
         // 平滑滚动

@@ -41,7 +41,7 @@ async def create_collaboration_session(request: CollaborationSessionRequest):
         
         return CollaborationSessionResponse(
             success=True,
-            data=result.dict(),
+            data=result.model_dump(),
             message="协作会话创建成功",
             code=200
         )
@@ -93,7 +93,7 @@ async def get_collaboration_state(session_id: str):
         
         return {
             "success": True,
-            "data": state.dict(),
+            "data": state.model_dump(),
             "message": "获取协作状态成功",
             "code": 200
         }
@@ -191,7 +191,7 @@ async def get_comments(session_id: str):
         
         return {
             "success": True,
-            "data": [comment.dict() for comment in comments],
+            "data": [comment.model_dump() for comment in comments],
             "total_count": len(comments),
             "message": "获取批注列表成功",
             "code": 200

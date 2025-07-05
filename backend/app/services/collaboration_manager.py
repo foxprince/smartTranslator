@@ -102,7 +102,7 @@ class CollaborationManager:
                 session_id=session_id,
                 webapp_url=webapp_url,
                 websocket_url=websocket_url,
-                permissions=creator_permissions.dict()
+                permissions=creator_permissions.model_dump()
             )
         
         except Exception as e:

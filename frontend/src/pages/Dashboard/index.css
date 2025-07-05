@@ -1,0 +1,353 @@
+/* 仪表盘容器 */
+.dashboard-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* 页面头部 */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 0 4px;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.header-title p {
+  margin: 4px 0 0 0;
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.header-actions {
+  flex-shrink: 0;
+}
+
+/* 指标行 */
+.metrics-row {
+  margin-bottom: 24px;
+}
+
+.metrics-row .ant-card {
+  height: 100%;
+}
+
+.metrics-row .ant-card-body {
+  padding: 20px;
+}
+
+.metric-trend {
+  margin-top: 8px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* 状态行 */
+.status-row {
+  margin-bottom: 24px;
+}
+
+.status-card {
+  height: 280px;
+}
+
+.status-card .ant-card-body {
+  padding: 20px;
+  height: calc(100% - 57px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 提供商状态 */
+.provider-status {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-summary {
+  margin-bottom: 16px;
+}
+
+.provider-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.provider-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.provider-item:last-child {
+  border-bottom: none;
+}
+
+.provider-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.provider-name {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.provider-health {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.response-time {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* 缓存状态 */
+.cache-status {
+  height: 100%;
+}
+
+.cache-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.cache-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: #595959;
+}
+
+.metric-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #262626;
+}
+
+/* 预算状态 */
+.budget-status {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.budget-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.budget-label {
+  font-size: 14px;
+  color: #595959;
+  margin-bottom: 4px;
+}
+
+.budget-text {
+  font-size: 12px;
+  color: #8c8c8c;
+  text-align: right;
+}
+
+/* 图表行 */
+.charts-row {
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  height: 380px;
+}
+
+.chart-card .ant-card-body {
+  padding: 20px;
+  height: calc(100% - 57px);
+}
+
+/* 最近任务行 */
+.recent-jobs-row {
+  margin-bottom: 24px;
+}
+
+.jobs-card .ant-card-body {
+  padding: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .charts-row .ant-col {
+    margin-bottom: 16px;
+  }
+  
+  .chart-card {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .header-actions {
+    align-self: stretch;
+  }
+  
+  .header-actions .ant-space {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .metrics-row .ant-col {
+    margin-bottom: 16px;
+  }
+  
+  .status-row .ant-col {
+    margin-bottom: 16px;
+  }
+  
+  .status-card {
+    height: auto;
+    min-height: 200px;
+  }
+  
+  .chart-card {
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 0;
+  }
+  
+  .header-title h2 {
+    font-size: 20px;
+  }
+  
+  .metrics-row,
+  .status-row,
+  .charts-row,
+  .recent-jobs-row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  .metrics-row .ant-col,
+  .status-row .ant-col,
+  .charts-row .ant-col,
+  .recent-jobs-row .ant-col {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .chart-card {
+    height: 250px;
+  }
+}
+
+/* 加载状态 */
+.dashboard-container .ant-spin-container {
+  min-height: 400px;
+}
+
+/* 卡片悬停效果 */
+.metrics-row .ant-card,
+.status-card,
+.chart-card,
+.jobs-card {
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.metrics-row .ant-card:hover,
+.status-card:hover,
+.chart-card:hover,
+.jobs-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #d9d9d9;
+}
+
+/* 统计数字动画 */
+.ant-statistic-content-value {
+  transition: all 0.3s ease;
+}
+
+/* 进度条样式 */
+.ant-progress-line {
+  margin-bottom: 4px;
+}
+
+.ant-progress-text {
+  font-size: 12px !important;
+}
+
+/* 表格样式 */
+.jobs-card .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.jobs-card .ant-table-tbody > tr:hover > td {
+  background: #f5f5f5;
+}
+
+/* 图表工具提示样式 */
+.recharts-tooltip-wrapper {
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .header-title h2 {
+    color: #fff;
+  }
+  
+  .header-title p {
+    color: #a6a6a6;
+  }
+  
+  .provider-item {
+    border-bottom-color: #303030;
+  }
+  
+  .metric-label {
+    color: #a6a6a6;
+  }
+  
+  .metric-value {
+    color: #fff;
+  }
+  
+  .budget-label {
+    color: #a6a6a6;
+  }
+  
+  .budget-text {
+    color: #737373;
+  }
+}
