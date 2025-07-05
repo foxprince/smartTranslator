@@ -82,4 +82,15 @@ node_modules/
 # Local env
 .env
 .env.*
+
+# Sensitive files
+*.doc
+**/备注*
+**/config*
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
 .venv/
