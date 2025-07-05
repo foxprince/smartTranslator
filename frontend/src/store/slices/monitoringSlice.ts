@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { message } from 'antd';
-import { monitoringApi } from '@/services/api';
-import { MonitoringState, MonitoringMetrics, Alert } from '@/types';
+import { monitoringApi } from '../../services/api';
+import { MonitoringState, MonitoringMetrics, Alert } from '../../types';
 
 // 异步actions
 export const fetchMonitoringMetrics = createAsyncThunk(
@@ -19,7 +19,7 @@ export const fetchMonitoringMetrics = createAsyncThunk(
 
 export const fetchAlerts = createAsyncThunk(
   'monitoring/fetchAlerts',
-  async (params?: { severity?: string; resolved?: boolean }, { rejectWithValue }) => {
+  async (params: { severity?: string; resolved?: boolean } = {}, { rejectWithValue }) => {
     try {
       const result = await monitoringApi.getAlerts(params);
       return result;

@@ -1,0 +1,85 @@
+.bilingual-editor {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.editor-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.comment-toggle {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment-toggle.active {
+  background: #2196F3;
+  color: white;
+}
+
+.editor-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.editor-content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}
+
+.english-column,
+.chinese-column {
+  flex: 1;
+  padding: 1rem;
+  background: white;
+  margin: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.english-column h3,
+.chinese-column h3 {
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #2196F3;
+  color: #333;
+}
+
+.recently-edited {
+  background-color: #fff3cd !important;
+  border-left: 4px solid #ffc107 !important;
+  animation: highlight 3s ease-out;
+}
+
+@keyframes highlight {
+  0% { background-color: #fff3cd; }
+  100% { background-color: transparent; }
+}
+
+@media (max-width: 768px) {
+  .editor-content {
+    flex-direction: column;
+  }
+  
+  .english-column,
+  .chinese-column {
+    flex: none;
+  }
+}

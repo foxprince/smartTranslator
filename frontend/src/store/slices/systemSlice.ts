@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { message } from 'antd';
-import { systemApi, providerApi, cacheApi, costApi } from '@/services/api';
-import { SystemState, SystemStats, SystemConfig } from '@/types';
+import { systemApi, providerApi, cacheApi, costApi } from '../../services/api';
+import { SystemState, SystemStats, SystemConfig } from '../../types';
 
 // 异步actions
 export const fetchSystemStats = createAsyncThunk(
@@ -107,7 +107,7 @@ export const clearCache = createAsyncThunk(
 
 export const fetchCostStats = createAsyncThunk(
   'system/fetchCostStats',
-  async (params?: { start_date?: string; end_date?: string; provider?: string }, { rejectWithValue }) => {
+  async (params: { start_date?: string; end_date?: string; provider?: string } = {}, { rejectWithValue }) => {
     try {
       const stats = await costApi.getStats(params);
       return stats;

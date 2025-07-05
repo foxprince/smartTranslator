@@ -19,9 +19,9 @@ import {
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { Alert, AlertSeverity, AlertType } from '@/types';
-import { useAppDispatch } from '@/store';
-import { resolveAlert } from '@/store/slices/monitoringSlice';
+import { Alert, AlertSeverity, AlertType } from '../../types';
+import { useAppDispatch } from '../../store';
+import { resolveAlert } from '../../store/slices/monitoringSlice';
 
 import './index.css';
 
@@ -120,7 +120,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({
                           <Text strong className="alert-type">
                             {typeConfig.label}
                           </Text>
-                          <Tag color={severityConfig_.color} size="small">
+                          <Tag color={severityConfig_.color}>
                             {severityConfig_.label}
                           </Tag>
                         </div>
@@ -173,7 +173,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({
                             <Text className="alert-type" type="secondary">
                               {typeConfig.label}
                             </Text>
-                            <Tag color="success" size="small">
+                            <Tag color="success">
                               已解决
                             </Tag>
                           </div>

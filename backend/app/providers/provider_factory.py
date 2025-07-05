@@ -3,6 +3,7 @@
 """
 from typing import Dict, Type, Optional
 from .base_provider import BaseTranslationProvider
+from .mock_provider import MockTranslationProvider
 from .google_translate import GoogleTranslateProvider
 from .openai_translator import OpenAITranslateProvider
 from ..schemas.translation import TranslationProvider
@@ -14,6 +15,7 @@ class ProviderFactory:
     _providers: Dict[TranslationProvider, Type[BaseTranslationProvider]] = {
         TranslationProvider.GOOGLE: GoogleTranslateProvider,
         TranslationProvider.OPENAI: OpenAITranslateProvider,
+        TranslationProvider.MOCK: MockTranslationProvider,
     }
     
     _instances: Dict[TranslationProvider, BaseTranslationProvider] = {}

@@ -3,7 +3,11 @@ Strands AI翻译工具 - FastAPI应用主文件
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 from .api.v1 import api_router
+
+# 加载环境变量
+load_dotenv()
 
 # 创建FastAPI应用实例
 app = FastAPI(

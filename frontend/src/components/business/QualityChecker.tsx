@@ -193,6 +193,7 @@ export const QualityChecker: React.FC<QualityCheckerProps> = ({
       )}
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .quality-checker {
           display: flex;

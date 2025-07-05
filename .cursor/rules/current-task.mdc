@@ -47,34 +47,37 @@ alwaysApply: true
 
 <current-task>
 
-### Task: 故事10 - 双语网页生成系统开发
-**Story PRD**: docs/product/prd/v1.0/stories/story-10-bilingual-webpage-generator.md
+### Task: 故事2 - 机器翻译集成开发
+**Story PRD**: docs/product/prd/v1.0/stories/story-2-machine-translation-integration.md
 **Knowledge & References**: docs/product/core-concepts.md, docs/product/prd/v1.0/strands-v1.0-version-prd.md, docs/development/development-guidelines.md
-**Goal:** 实现双语网页生成系统，将经过预处理的双语文本转换为具备良好用户体验的双语对照网页
+**Goal:** 实现机器翻译集成功能，为翻译人员提供AI翻译辅助，提高翻译效率和质量
 **Target Directory:** backend/app/services/
 
 **Overall Plan:**
 - (Done) 创建Story PRD文档
-- (Done) 根据用户反馈更新PRD（可编辑网页+实时协作）
-- (Done) 用户评审更新后的PRD
-- (To Do) 分析现有代码库和依赖关系
-- (To Do) 创建协作相关数据模型
-- (To Do) 实现WebSocket协作服务
-- (To Do) 实现协作管理和批注系统
-- (To Do) 创建前端协作组件
+- (Done) 用户评审Story PRD
+- (Done) 分析现有系统集成需求
+- (Done) 创建翻译相关数据模型
+- (Done) 实现翻译引擎核心服务
+- (Done) 实现翻译提供商集成
+- (To Do) 实现质量评估和缓存系统
+- (To Do) 实现成本跟踪系统
 - (To Do) 实现API接口
+- (To Do) 集成到前端界面
 - (To Do) 编写单元测试
 - (To Do) 集成测试和验证
 - (To Do) 准备交付和文档
 
-**Current Step:** 分析现有代码库和创建协作相关数据模型
-**Next Steps:** 实现WebSocket和协作核心功能
+**Current Step:** 实现质量评估和缓存系统
+**Next Steps:** 实现成本跟踪系统和API接口
 
 **Logs:**
-[2024-07-04] - 开始故事10双语网页生成系统开发任务
-[2024-07-04] - 完成Story PRD文档创建，包含详细的实施方案设计
-[2024-07-04] - 用户提出重要补充：需要可编辑网页和实时协作功能
-[2024-07-04] - 完成PRD重大更新，从静态网页生成改为动态协作平台
-[2024-07-04] - 用户确认PRD，开始代码实现阶段
+[2024-07-04] - 开始故事2机器翻译集成开发任务
+[2024-07-04] - 用户选择故事2，准备创建Story PRD
+[2024-07-04] - 完成Story PRD文档创建，包含完整的翻译引擎设计和系统集成方案
+[2024-07-04] - 用户确认Story PRD，开始代码实现阶段
+[2024-07-04] - 完成翻译数据模型定义，包含完整的类型系统
+[2024-07-04] - 完成翻译提供商基础架构：BaseProvider, GoogleTranslate, OpenAI
+[2024-07-04] - 完成提供商工厂和翻译引擎核心服务
 
 </current-task>

@@ -8,25 +8,8 @@ import { useWebSocket } from '../../../hooks/useWebSocket';
 import { CollaborationIndicator } from './CollaborationIndicator';
 import { CommentPanel } from './CommentPanel';
 import { EditableLine } from './EditableLine';
-
-interface User {
-  id: string;
-  name: string;
-  role: 'translator' | 'reviewer';
-  is_online: boolean;
-  avatar_url?: string;
-}
-
-interface Comment {
-  id: string;
-  line_number: number;
-  content: string;
-  comment_type: 'suggestion' | 'question' | 'approval' | 'correction';
-  author_id: string;
-  author_name: string;
-  is_resolved: boolean;
-  created_at: string;
-}
+import { User, UserRole, Comment, CommentType } from '../../../types';
+import './BilingualEditor.css';
 
 interface BilingualEditorProps {
   sessionId: string;
@@ -34,8 +17,8 @@ interface BilingualEditorProps {
   initialCnContent: string[];
   currentUser: {
     id: string;
-    name: string;
-    role: 'translator' | 'reviewer';
+    username: string;
+    role: UserRole;
   };
   onContentChange?: (lineNumber: number, content: string, type: 'en' | 'cn') => void;
 }
@@ -56,7 +39,7 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
   const [isCommentPanelOpen, setIsCommentPanelOpen] = useState(false);
   
   // WebSocket连接
-  const websocketUrl = `ws://localhost:8000/api/v1/collaboration/ws/${sessionId}?user_id=${currentUser.id}&user_name=${currentUser.name}&user_role=${currentUser.role}`;
+  const websocketUrl = `ws://localhost:8000/api/v1/collaboration/ws/${sessionId}?user_id=${currentUser.id}&user_name=${currentUser.username}&user_role=${currentUser.role}`;
   const { socket, isConnected, sendMessage } = useWebSocket(websocketUrl);
   
   // 引用
@@ -144,9 +127,12 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
   const handleUserJoin = useCallback((data: any) => {
     const newUser: User = {
       id: data.user_id,
-      name: data.user_name,
+      username: data.user_name,
       role: data.user_role,
-      is_online: true
+      is_online: true,
+      email: '',
+      created_at: new Date().toISOString(),
+      last_login: new Date().toISOString(),
     };
     
     setActiveUsers(prev => {
@@ -197,12 +183,12 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
   // 处理行编辑
   const handleLineEdit = useCallback((lineNumber: number, newContent: string, type: 'en' | 'cn') => {
     // 权限检查
-    if (currentUser.role === 'reviewer' && type === 'cn') {
+    if (currentUser.role === UserRole.REVIEWER && type === 'cn') {
       toast.error('审核人员无法编辑译文');
       return;
     }
     
-    if (type === 'en' && currentUser.role !== 'admin') {
+    if (type === 'en' && currentUser.role !== UserRole.ADMIN) {
       toast.error('只有管理员可以编辑原文');
       return;
     }
@@ -242,7 +228,7 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
         data: {
           line_number: lineNumber,
           content: content,
-          comment_type: commentType
+          comment_type: commentType as CommentType
         }
       });
     }
@@ -288,7 +274,7 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
                 content={line}
                 lineNumber={index}
                 type="en"
-                readOnly={currentUser.role !== 'admin'}
+                readOnly={currentUser.role !== UserRole.ADMIN}
                 onEdit={(content) => handleLineEdit(index, content, 'en')}
                 onClick={() => handleLineClick(index)}
                 comments={comments.filter(c => c.line_number === index)}
@@ -305,7 +291,7 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
                 content={line}
                 lineNumber={index}
                 type="cn"
-                readOnly={currentUser.role === 'reviewer'}
+                readOnly={currentUser.role === UserRole.REVIEWER}
                 onEdit={(content) => handleLineEdit(index, content, 'cn')}
                 onClick={() => handleLineClick(index)}
                 comments={comments.filter(c => c.line_number === index)}
@@ -326,95 +312,6 @@ export const BilingualEditor: React.FC<BilingualEditorProps> = ({
           />
         )}
       </div>
-      
-      {/* 样式 */}
-      <style jsx>{`
-        .bilingual-editor {
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          background: #f5f5f5;
-        }
-        
-        .editor-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 1rem;
-          background: white;
-          border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .editor-controls {
-          display: flex;
-          gap: 0.5rem;
-        }
-        
-        .comment-toggle {
-          padding: 0.5rem 1rem;
-          border: 1px solid #ddd;
-          background: white;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-        
-        .comment-toggle.active {
-          background: #2196F3;
-          color: white;
-        }
-        
-        .editor-container {
-          flex: 1;
-          display: flex;
-          overflow: hidden;
-        }
-        
-        .editor-content {
-          flex: 1;
-          display: flex;
-          overflow: auto;
-        }
-        
-        .english-column,
-        .chinese-column {
-          flex: 1;
-          padding: 1rem;
-          background: white;
-          margin: 0.5rem;
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .english-column h3,
-        .chinese-column h3 {
-          margin: 0 0 1rem 0;
-          padding-bottom: 0.5rem;
-          border-bottom: 2px solid #2196F3;
-          color: #333;
-        }
-        
-        .recently-edited {
-          background-color: #fff3cd !important;
-          border-left: 4px solid #ffc107 !important;
-          animation: highlight 3s ease-out;
-        }
-        
-        @keyframes highlight {
-          0% { background-color: #fff3cd; }
-          100% { background-color: transparent; }
-        }
-        
-        @media (max-width: 768px) {
-          .editor-content {
-            flex-direction: column;
-          }
-          
-          .english-column,
-          .chinese-column {
-            flex: none;
-          }
-        }
-      `}</style>
     </div>
   );
 };

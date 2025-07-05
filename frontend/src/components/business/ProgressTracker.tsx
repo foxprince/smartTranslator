@@ -175,6 +175,7 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({
       </div>
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .progress-tracker {
           display: flex;

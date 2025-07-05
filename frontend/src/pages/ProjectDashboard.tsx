@@ -305,6 +305,7 @@ export const ProjectDashboard: React.FC<ProjectDashboardProps> = () => {
       )}
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .project-dashboard {
           min-height: 100vh;

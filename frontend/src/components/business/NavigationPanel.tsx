@@ -238,6 +238,7 @@ export const NavigationPanel: React.FC<NavigationPanelProps> = ({
       </div>
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .navigation-panel {
           height: 100%;

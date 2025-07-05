@@ -12,6 +12,7 @@ class TranslationProvider(str, Enum):
     GOOGLE = "google"
     OPENAI = "openai"
     AZURE = "azure"
+    MOCK = "mock"
 
 
 class LanguageCode(str, Enum):

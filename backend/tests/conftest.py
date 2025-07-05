@@ -8,7 +8,7 @@ from app.services.translation_engine import TranslationEngine
 from app.providers.provider_factory import ProviderFactory
 from app.services.translation_cache import TranslationCache
 from app.services.cost_tracker import CostTracker
-from app.services.quality_assessor import QualityAssessor
+from app.services.translation_quality import QualityAssessor
 
 
 @pytest.fixture(scope="session")

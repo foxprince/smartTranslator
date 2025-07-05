@@ -11,6 +11,7 @@ import { ProgressTracker } from '../components/business/ProgressTracker';
 import { QualityChecker } from '../components/business/QualityChecker';
 import { CollaborationInvite } from '../components/business/CollaborationInvite';
 import { projectService } from '../services/projectService';
+import { UserRole } from '../types';
 
 interface TranslationWorkspaceProps {}
 
@@ -294,7 +295,7 @@ export const TranslationWorkspace: React.FC<TranslationWorkspaceProps> = () => {
               sessionId={collaborationSession.session_id}
               initialEnContent={currentProject.originalContent}
               initialCnContent={currentProject.translationContent}
-              currentUser={currentUser}
+              currentUser={{...currentUser, username: currentUser.name, role: currentUser.role as UserRole}}
               onContentChange={handleContentChange}
             />
           )}
@@ -310,6 +311,7 @@ export const TranslationWorkspace: React.FC<TranslationWorkspaceProps> = () => {
       )}
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .translation-workspace {
           height: 100vh;

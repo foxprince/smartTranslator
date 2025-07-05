@@ -13,7 +13,7 @@ import {
   PaginatedResponse,
   PaginationParams,
   SystemConfig,
-} from '@/types';
+} from '../types';
 
 // 创建axios实例
 const api: AxiosInstance = axios.create({

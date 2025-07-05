@@ -2,6 +2,11 @@
 文档处理服务
 支持多种文档格式的上传、解析和翻译
 """
+class DocumentProcessingError(Exception):
+    """文档处理异常"""
+    pass
+
+
 import os
 import uuid
 import mimetypes

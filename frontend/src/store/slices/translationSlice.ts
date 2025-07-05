@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { message } from 'antd';
-import { translationApi } from '@/services/api';
+import { translationApi } from '../../services/api';
 import {
   TranslationState,
   TranslationRequest,
   TranslationResult,
   TranslationJob,
   PaginationParams,
-} from '@/types';
+} from '../../types';
 
 // 异步actions
 export const translateText = createAsyncThunk(

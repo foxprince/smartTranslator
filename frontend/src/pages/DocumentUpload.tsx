@@ -237,6 +237,7 @@ export const DocumentUpload: React.FC<DocumentUploadProps> = () => {
       </div>
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .document-upload {
           min-height: 100vh;

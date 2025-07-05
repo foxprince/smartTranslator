@@ -6,17 +6,17 @@ import zhCN from 'antd/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 
-import { store } from '@/store';
-import Layout from '@/components/Layout';
-import Dashboard from '@/pages/Dashboard';
-import TranslationManagement from '@/pages/TranslationManagement';
-import DocumentManagement from '@/pages/DocumentManagement';
-import ProviderManagement from '@/pages/ProviderManagement';
-import CacheManagement from '@/pages/CacheManagement';
-import CostManagement from '@/pages/CostManagement';
-import QualityAnalysis from '@/pages/QualityAnalysis';
-import SystemMonitoring from '@/pages/SystemMonitoring';
-import Settings from '@/pages/Settings';
+import { store } from './store';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import TranslationManagement from './pages/TranslationManagement';
+import DocumentManagement from './pages/DocumentManagement';
+import ProviderManagement from './pages/ProviderManagement';
+import CacheManagement from './pages/CacheManagement';
+import CostManagement from './pages/CostManagement';
+import QualityAnalysis from './pages/QualityAnalysis';
+import SystemMonitoring from './pages/SystemMonitoring';
+import Settings from './pages/Settings';
 
 import './App.css';
 

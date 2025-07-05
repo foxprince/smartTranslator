@@ -261,12 +261,34 @@ export interface User {
   role: UserRole;
   created_at: string;
   last_login: string;
+  is_online?: boolean;
+  avatar_url?: string;
 }
 
 export enum UserRole {
   ADMIN = 'admin',
   USER = 'user',
   VIEWER = 'viewer',
+  TRANSLATOR = 'translator',
+  REVIEWER = 'reviewer',
+}
+
+export enum CommentType {
+  SUGGESTION = 'suggestion',
+  QUESTION = 'question',
+  APPROVAL = 'approval',
+  CORRECTION = 'correction',
+}
+
+export interface Comment {
+  id: string;
+  line_number: number;
+  content: string;
+  comment_type: CommentType;
+  author_id: string;
+  author_name: string;
+  is_resolved: boolean;
+  created_at: string;
 }
 
 // Redux状态类型

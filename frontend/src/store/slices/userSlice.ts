@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { message } from 'antd';
-import { userApi } from '@/services/api';
-import { UserState, User } from '@/types';
+import { userApi } from '../../services/api';
+import { UserState, User } from '../../types';
 
 // 异步actions
 export const login = createAsyncThunk(

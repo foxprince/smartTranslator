@@ -28,9 +28,9 @@ import {
   FileOutlined,
 } from '@ant-design/icons';
 
-import { useAppDispatch, useAppSelector } from '@/store';
-import { fetchSystemStats } from '@/store/slices/systemSlice';
-import NotificationPanel from '@/components/NotificationPanel';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { fetchSystemStats } from '../../store/slices/systemSlice';
+import NotificationPanel from '../NotificationPanel';
 
 import './index.css';
 
@@ -139,7 +139,7 @@ const Layout: React.FC = () => {
     },
     {
       key: 'divider',
-      type: 'divider',
+      type: 'divider' as const,
     },
     {
       key: 'logout',

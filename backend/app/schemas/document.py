@@ -4,7 +4,7 @@
 from typing import List, Dict, Any, Optional, Union
 from datetime import datetime
 from enum import Enum
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, validator, field_validator
 from uuid import UUID
 
 from app.schemas.translation import LanguageCode, TranslationProvider
@@ -61,7 +61,7 @@ class DocumentUploadRequest(BaseModel):
     tags: Optional[List[str]] = Field(None, description="文档标签")
     metadata: Optional[Dict[str, Any]] = Field(None, description="文档元数据")
     
-    @validator('filename')
+    @field_validator('filename')
     def validate_filename(cls, v):
         if not v or len(v.strip()) == 0:
             raise ValueError('文件名不能为空')
@@ -79,13 +79,13 @@ class DocumentTranslationRequest(BaseModel):
     chunk_size: int = Field(1000, ge=100, le=5000, description="文本分块大小")
     preserve_formatting: bool = Field(True, description="是否保持格式")
     
-    @validator('source_language', 'target_language')
+    @field_validator('source_language', 'target_language')
     def validate_languages(cls, v):
         if not v:
             raise ValueError('语言代码不能为空')
         return v
     
-    @validator('target_language')
+    @field_validator('target_language')
     def validate_different_languages(cls, v, values):
         if 'source_language' in values and v == values['source_language']:
             raise ValueError('源语言和目标语言不能相同')
@@ -109,7 +109,7 @@ class DocumentShareRequest(BaseModel):
     max_downloads: Optional[int] = Field(None, ge=1, description="最大下载次数")
     expires_hours: Optional[int] = Field(None, ge=1, le=8760, description="过期小时数")
     
-    @validator('password')
+    @field_validator('password')
     def validate_password(cls, v, values):
         if values.get('share_type') == ShareType.PASSWORD and not v:
             raise ValueError('密码分享类型必须设置密码')
@@ -129,7 +129,7 @@ class DocumentQueryRequest(BaseModel):
     page: int = Field(1, ge=1, description="页码")
     page_size: int = Field(20, ge=1, le=100, description="每页大小")
     sort_by: str = Field("created_at", description="排序字段")
-    sort_order: str = Field("desc", regex="^(asc|desc)$", description="排序顺序")
+    sort_order: str = Field("desc", pattern="^(asc|desc)$", description="排序顺序")
 
 
 # 响应模式
@@ -265,14 +265,14 @@ class SupportedFormatsResponse(BaseModel):
 # 批量操作模式
 class BatchDocumentRequest(BaseModel):
     """批量文档操作请求"""
-    document_ids: List[UUID] = Field(..., min_items=1, max_items=100, description="文档ID列表")
+    document_ids: List[UUID] = Field(..., min_length=1, max_length=100, description="文档ID列表")
     operation: str = Field(..., description="操作类型")
     parameters: Optional[Dict[str, Any]] = Field(None, description="操作参数")
 
 
 class BatchTranslationRequest(BaseModel):
     """批量翻译请求"""
-    document_ids: List[UUID] = Field(..., min_items=1, max_items=50, description="文档ID列表")
+    document_ids: List[UUID] = Field(..., min_length=1, max_length=50, description="文档ID列表")
     source_language: LanguageCode = Field(..., description="源语言")
     target_language: LanguageCode = Field(..., description="目标语言")
     provider: TranslationProvider = Field(TranslationProvider.GOOGLE, description="翻译提供商")
@@ -296,7 +296,7 @@ class DocumentTemplateRequest(BaseModel):
     name: str = Field(..., max_length=100, description="模板名称")
     description: Optional[str] = Field(None, description="模板描述")
     category: str = Field(..., max_length=50, description="模板分类")
-    file_types: List[str] = Field(..., min_items=1, description="支持的文件类型")
+    file_types: List[str] = Field(..., min_length=1, description="支持的文件类型")
     processing_config: Dict[str, Any] = Field(..., description="处理配置")
     translation_config: Optional[Dict[str, Any]] = Field(None, description="翻译配置")
     is_public: bool = Field(False, description="是否公开")
@@ -319,3 +319,43 @@ class DocumentTemplateInfo(BaseModel):
     
     class Config:
         from_attributes = True
+
+
+class TextStats(BaseModel):
+    """文本统计信息"""
+    total_lines: int
+    empty_lines: int
+    content_lines: int
+    short_lines: int
+    long_lines: int
+    average_line_length: float
+    encoding: str
+
+class TextIssue(BaseModel):
+    """文本问题"""
+    line_number: int
+    issue_type: str
+    description: str
+    severity: str = "warning"
+
+
+class DocumentPreprocessRequest(BaseModel):
+    """文档预处理请求"""
+    document_id: str = Field(..., description="文档ID")
+    options: Dict[str, Any] = Field(default_factory=dict, description="预处理选项")
+    
+
+class DocumentPreprocessResponse(BaseModel):
+    """文档预处理响应"""
+    document_id: str = Field(..., description="文档ID")
+    status: str = Field(..., description="处理状态")
+    result: Optional[Dict[str, Any]] = Field(None, description="处理结果")
+    message: str = Field("", description="处理消息")
+
+
+class ProcessingResult(BaseModel):
+    """处理结果"""
+    success: bool = Field(..., description="是否成功")
+    data: Optional[Dict[str, Any]] = Field(None, description="结果数据")
+    error: Optional[str] = Field(None, description="错误信息")
+    processing_time: float = Field(0.0, description="处理时间（秒）")

@@ -42,12 +42,12 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
-import { useAppDispatch, useAppSelector } from '@/store';
-import { fetchSystemStats } from '@/store/slices/systemSlice';
-import { fetchTranslationJobs } from '@/store/slices/translationSlice';
-import { TranslationProvider, JobStatus } from '@/types';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { fetchSystemStats } from '../../store/slices/systemSlice';
+import { fetchTranslationJobs } from '../../store/slices/translationSlice';
+import { TranslationProvider, JobStatus } from '../../types';
 
 import './index.css';
 
@@ -190,7 +190,7 @@ const Dashboard: React.FC = () => {
           <Space>
             <RangePicker
               value={timeRange}
-              onChange={(dates) => dates && setTimeRange(dates)}
+              onChange={(dates) => dates && setTimeRange(dates as [Dayjs, Dayjs])}
               format="YYYY-MM-DD"
             />
             <Button

@@ -98,7 +98,11 @@ const DocumentManagement: React.FC = () => {
   const [stats, setStats] = useState({
     total_documents: 0,
     total_size_bytes: 0,
-    documents_by_status: {},
+    documents_by_status: {
+      completed: 0,
+      processing: 0,
+      uploaded: 0,
+    },
     recent_uploads: 0,
   });
 
@@ -346,7 +350,7 @@ const DocumentManagement: React.FC = () => {
             onClick: () => handleDownloadDocument(record),
           },
           {
-            type: 'divider',
+            type: 'divider' as const,
           },
           {
             key: 'delete',
@@ -413,11 +417,11 @@ const DocumentManagement: React.FC = () => {
     setTranslateModalVisible(true);
   };
 
-  const handleDownloadDocument = (document: Document) => {
+  const handleDownloadDocument = (doc: Document) => {
     // 创建下载链接
     const link = document.createElement('a');
-    link.href = `/api/document/${document.id}/download`;
-    link.download = document.original_filename;
+    link.href = `/api/document/${doc.id}/download`;
+    link.download = doc.original_filename;
     link.click();
   };
 

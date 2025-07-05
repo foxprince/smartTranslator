@@ -31,7 +31,7 @@ class OpenAITranslateProvider(BaseTranslationProvider):
             )
         
         # OpenAI特定配置
-        self.model = "gpt-3.5-turbo"
+        self.model = "gpt-4o-mini-2024-07-18"
         self.max_tokens = 4000
         self.temperature = 0.3  # 较低的温度以获得更一致的翻译
         self.max_batch_size = 10  # OpenAI需要逐个处理，但可以并发

@@ -234,6 +234,7 @@ export const CollaborationInvite: React.FC<CollaborationInviteProps> = ({
       </div>
 
       {/* 样式 */}
+      {/* @ts-ignore */}
       <style jsx>{`
         .collaboration-invite {
           display: flex;
